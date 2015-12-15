@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>PLDuino control center</title>
+		<style>
+			td, th {
+				padding: 10px;
+				border: 1px solid black;
+				min-width: 100px;
+				height: 40px;
+				text-align: center;
+			}
+			div {
+				margin: 20px;
+				float: left;				
+			}
+			.clock-overlay {
+				float: none;
+			}
+
+			.off:after {
+				content: "OFF";
+				color: darkcyan;
+			}
+			.on:after {
+				content: "ON";
+				color: red;
+				font-weight: bold;
+			}
+			.analog-value {
+				font-weight: bold;
+			}
+		</style>
+		<script type="text/javascript">
+			function doAJAX(url, callback)
+			{
+		        var request = (window.ActiveXObject && new ActiveXObject('Microsoft.XMLHTTP')) ||
+		                      (window.XMLHttpRequest && new XMLHttpRequest())
+		        if (request)
+		        {
+	                request.onreadystatechange = function(object) {
+	                	if (request.readyState == 4)
+                        	callback(request.responseText);
+		        	}
+                    request.open("GET", url, true)
+	                request.send("")
+		        }
+			}
+
+			+function()
+			{
+				var DINS_COUNT = 8
+				var DOUTS_COUNT = 8
+				var AINS_COUNT = 8
+				var RELAYS_COUNT = 6
+
+				function setupButtons()
+				{
+					for(var i=0; i<DOUTS_COUNT; ++i)
+						+function(idx)
+						{
+							document.getElementById("dout"+idx+"on").onclick = function()
+							{
+								doAJAX("/dout/" + idx + "/on")
+								return false
+							}
+							document.getElementById("dout"+idx+"off").onclick = function()
+							{
+								doAJAX("/dout/" + idx + "/off")
+								return false
+							}
+						}(i)
+					for(var i=0; i<RELAYS_COUNT; ++i)
+						+function(idx)
+						{
+							document.getElementById("relay"+idx+"on").onclick = function()
+							{
+								doAJAX("/relay/" + idx + "/on")
+								return false
+							}
+							document.getElementById("relay"+idx+"off").onclick = function()
+							{
+								doAJAX("/relay/" + idx + "/off")
+								return false
+							}
+						}(i)
+				}
+
+				function updateView(cfg)
+				{
+					for(var i=0; i<DINS_COUNT; ++i)
+						document.getElementById("din" + i).className = (cfg.input[i]? "on" : "off")
+					for(var i=0; i<DOUTS_COUNT; ++i)
+						document.getElementById("dout" + i).className = (cfg.output[i]? "on" : "off")
+					for(var i=0; i<AINS_COUNT; ++i)
+						document.getElementById("ain" + i).innerHTML = cfg.analog[i]
+					for(var i=0; i<RELAYS_COUNT; ++i)
+						document.getElementById("relay" + i).className = (cfg.relay[i]? "on" : "off")
+
+					document.getElementById("clock").innerHTML =
+						cfg.time.hour + ":" +
+						cfg.time.minute + " " +
+						cfg.date.year + "/" +
+						cfg.date.month + "/" +
+						cfg.date.day
+				}
+
+				window.onload = function()
+				{
+					setupButtons()
+					setInterval(
+						function()
+						{
+							doAJAX("/state", function(response) {
+								console.log(response)
+								try
+								{
+									updateView(JSON.parse(response))
+								}
+								catch(e)
+								{
+									console.log("can't parse")
+								}
+							})
+						},
+						500
+					)
+				}
+			}()
+
+		</script>
+	</head>
+	<body>
+
+		<div>
+			<h3>Analog inputs</h3>
+			<table>
+				<tr>
+					<td>AIN1: <span id="ain0" class="analog-value"></span></td>
+					<td>AIN2: <span id="ain1" class="analog-value"></span></td>
+				</tr>
+				<tr>
+					<td>AIN3: <span id="ain2" class="analog-value"></span></td>
+					<td>AIN4: <span id="ain3" class="analog-value"></span></td>
+				</tr>
+				<tr>
+					<td>AIN5: <span id="ain4" class="analog-value"></span></td>
+					<td>AIN6: <span id="ain5" class="analog-value"></span></td>
+				</tr>
+				<tr>
+					<td>AIN7: <span id="ain6" class="analog-value"></span></td>
+					<td>AIN8: <span id="ain7" class="analog-value"></span></td>
+				</tr>
+			</table>
+		</div>
+
+		<div>
+			<h3>Digital inputs</h3>
+			<table>
+				<tr>
+					<td>DIN1: <span id="din0"></span></td>
+					<td>DIN2: <span id="din1"></span></td>
+				</tr>
+				<tr>
+					<td>DIN3: <span id="din2"></span></td>
+					<td>DIN4: <span id="din3"></span></td>
+				</tr>
+				<tr>
+					<td>DIN5: <span id="din4"></span></td>
+					<td>DIN6: <span id="din5"></span></td>
+				</tr>
+				<tr>
+					<td>DIN7: <span id="din6"></span></td>
+					<td>DIN8: <span id="din7"></span></td>
+				</tr>
+			</table>
+		</div>
+
+		<div>
+			<h3>Digital outputs</h3>
+			<table>
+				<tr>
+					<td>
+						DOUT1: <span id="dout0"></span><br/>
+						<a href="#" id="dout0on">ON</a>
+						<a href="#" id="dout0off">OFF</a>
+					</td>
+					<td>
+						DOUT2: <span id="dout1"></span><br/>
+						<a href="#" id="dout1on">ON</a>
+						<a href="#" id="dout1off">OFF</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						DOUT3: <span id="dout2"></span><br/>
+						<a href="#" id="dout2on">ON</a>
+						<a href="#" id="dout2off">OFF</a>
+					</td>
+					<td>
+						DOUT4: <span id="dout3"></span><br/>
+						<a href="#" id="dout3on">ON</a>
+						<a href="#" id="dout3off">OFF</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						DOUT5: <span id="dout4"></span><br/>
+						<a href="#" id="dout4on">ON</a>
+						<a href="#" id="dout4off">OFF</a>
+					</td>
+					<td>
+						DOUT6: <span id="dout5"></span><br/>
+						<a href="#" id="dout5on">ON</a>
+						<a href="#" id="dout5off">OFF</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						DOUT7: <span id="dout6"></span><br/>
+						<a href="#" id="dout6on">ON</a>
+						<a href="#" id="dout6off">OFF</a>
+					</td>
+					<td>
+						DOUT8: <span id="dout7"></span><br/>
+						<a href="#" id="dout7on">ON</a>
+						<a href="#" id="dout7off">OFF</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div>
+			<h3>Relays</h3>
+			<table>
+				<tr>
+					<td>
+						Relay1: <span id="relay0"></span><br>
+						<a href="#" id="relay0on">ON</a>
+						<a href="#" id="relay0off">OFF</a>
+					</td>
+					<td>
+						Relay2: <span id="relay1"></span><br>
+						<a href="#" id="relay1on">ON</a>
+						<a href="#" id="relay1off">OFF</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Relay3: <span id="relay2"></span><br>
+						<a href="#" id="relay2on">ON</a>
+						<a href="#" id="relay2off">OFF</a>
+					</td>
+					<td>
+						Relay4: <span id="relay3"></span><br>
+						<a href="#" id="relay3on">ON</a>
+						<a href="#" id="relay3off">OFF</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Relay5: <span id="relay4"></span><br>
+						<a href="#" id="relay4on">ON</a>
+						<a href="#" id="relay4off">OFF</a>
+					</td>
+					<td>
+						Relay6: <span id="relay5"></span><br>
+						<a href="#" id="relay5on">ON</a>
+						<a href="#" id="relay5off">OFF</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div style="clear: both"/>
+
+		<div class="clock-overlay">
+			Current time: <span class="clock-display" id="clock">clk</span>
+		</div>
+
+		<div>
+			<p>More info: <a href="http://www.digital-loggers.com/plc.html">http://www.digital-loggers.com/plc.html</a></p>
+		</div>
+	</body>
+</html>
