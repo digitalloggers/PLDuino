@@ -30,9 +30,6 @@ namespace PLDuino
 
 	void enableLCD()
 	{
-	    DDRH |= (1<<PH2); // BOE on PH2 = output
-	    PORTH |= (1<<PH2); // set BOE High
-
 	    pinMode(TOUCH_IRQ, INPUT);
 
 	    pinMode(LCD_PWR, OUTPUT); digitalWrite(LCD_PWR, LOW);
@@ -40,11 +37,9 @@ namespace PLDuino
 
 	    pinMode(TOUCH_CS, OUTPUT); digitalWrite(TOUCH_CS, HIGH); 
 
-	    delay(350); // wait a little
+	    delay(1500); // wait a little
 	    pinMode(LCD_PWR, OUTPUT); digitalWrite(LCD_PWR, HIGH);
 	    
-	    PORTH &= ~(1<<PH2); // BOE low
-
 	    delay(250);
 	    digitalWrite(LCD_RST, LOW);
 	    delay(50);
@@ -92,6 +87,11 @@ namespace PLDuino
 		pinMode(RELAY6, OUTPUT);
 
 		pinMode(LED_PIN, OUTPUT);
+
+	    DDRH |= (1<<PH2); // BOE on PH2 = output
+	    PORTH |= (1<<PH2); // set BOE High
+	    delay(200);
+	    PORTH &= ~(1<<PH2); // BOE low
 	}
 
 
