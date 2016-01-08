@@ -1,11 +1,12 @@
-#include <SPI.h>
 #include <Arduino.h>
+#include <SPI.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_ILI9341.h>
 #include <PLDuino.h>
 #include <DS3232RTC.h>
 #include <Time.h>
 #include <Wire.h>
+#include "utils.h"
 using namespace PLDuino;
 
 // an equivalent to (sstream << setw(width) << setfill(fill) << value).str()

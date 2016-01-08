@@ -2,8 +2,7 @@
 #include <DS3232RTC.h>
 #include <Time.h>
 #include <Wire.h>
-
-
+#include "utils.h"
 
 void testClock()
 {

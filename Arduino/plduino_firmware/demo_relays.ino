@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include <TMRpcm.h>
 #include <SPI.h>
 #include <SD.h>
@@ -10,11 +11,11 @@
 #include <DS3232RTC.h>
 #include <Time.h>
 #include <Wire.h>
-
+#include "utils.h"
 
 void showRelays (unsigned long timeout_seconds)
 {
-  bmpDraw("relays.bmp", 0, 0);
+  bmpDraw(tft, "relays.bmp", 0, 0);
   Label lblBack("", ILI9341_RED);
   lblBack.setPositionAndSize(111, 195, 100, 35);
   
@@ -79,7 +80,7 @@ void showRelays (unsigned long timeout_seconds)
     
     if (!soundPlayed)
     {
-      playSound("part6.wav");
+      playSound(tmrpcm, "part6.wav");
       soundPlayed = true;
     }
     

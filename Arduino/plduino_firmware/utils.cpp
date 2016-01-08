@@ -1,4 +1,10 @@
-#include <Arduino.h>
+#include "utils.h"
+#include <HardwareSerial.h>
+#include <SPI.h>
+#include <SD.h>
+#include <DS3232RTC.h>
+#include <Time.h>
+#include <Wire.h>
 
 
 // Assembles "HH:MM:SS" string (e.g. "09:30:00") from current time values.
@@ -48,7 +54,7 @@ int daysInMonth (int year, int month) // 1==january
 
 
 // Just pauses execution until the screen is touched.
-void waitForTouch()
+void waitForTouch (PLDTouch &touch)
 {
   while(!touch.dataAvailable());
   while(touch.dataAvailable()) touch.read();
@@ -57,7 +63,7 @@ void waitForTouch()
 
 // Waits until the user touches the screen, or timeout expires.
 // Returns true if touched, otherwise false (i.e. exit by timeout)
-bool waitForTouchOrTimeout (int seconds)
+bool waitForTouchOrTimeout (PLDTouch &touch, int seconds)
 {
   unsigned long starttime = millis();
   while(millis() - starttime < seconds*1000ul)
@@ -72,17 +78,22 @@ bool waitForTouchOrTimeout (int seconds)
 }
 
 
-void playSound (const char *filename)
+void playSound (TMRpcm &tmrpcm, const char *filename)
 {
   tmrpcm.play(const_cast<char *>(filename));
   while(tmrpcm.isPlaying());
 }
 
 
+
+#define BUFFPIXEL 80
+
+uint16_t read16(File &f);
+uint32_t read32(File &f);
+
 // Draws BMP image on screen.
 // x, y - position where to draw.
-#define BUFFPIXEL 80
-void bmpDraw(const char *filename, uint8_t x, uint16_t y)
+void bmpDraw(Adafruit_ILI9341 &tft, const char *filename, uint8_t x, uint16_t y)
 {
   File     bmpFile;
   int      bmpWidth, bmpHeight;   // W+H in pixels

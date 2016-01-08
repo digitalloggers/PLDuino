@@ -10,21 +10,13 @@
 #include <DS3232RTC.h>
 #include <Time.h>
 #include <Wire.h>
-#include <avr/io.h>
 
 #define VERSION "1.2.1.0"
-
-// Setup fuse bits
-#define LOW_FUSE 0xFF
-#define HIGH_FUSE 0xD8
-#define EXT_FUSE 0xFD
-FUSES = { LOW_FUSE, HIGH_FUSE, EXT_FUSE };
 
 Adafruit_ILI9341 tft = Adafruit_ILI9341(PLDuino::LCD_CS, PLDuino::LCD_DC);
 PLDTouch touch(PLDuino::TOUCH_CS, PLDuino::TOUCH_IRQ);
 TMRpcm tmrpcm;
 Sd2Card card; bool card_initialized;
-
 
 void blinkLED()
 {
@@ -35,6 +27,9 @@ void blinkLED()
   }
 }
 
+
+void test();
+void demo();
 
 void setup()
 {

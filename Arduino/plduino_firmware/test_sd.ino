@@ -1,10 +1,11 @@
+#include <Arduino.h>
 #include <Adafruit_ILI9341.h>
 #include <Adafruit_GFX.h>
 #include <SPI.h>
 #include <SD.h>
 #include <PLDuino.h>
 #include <PLDuinoGUI.h>
-
+#include "utils.h"
 
 String cardtype_to_str (uint8_t type)
 {
@@ -15,7 +16,6 @@ String cardtype_to_str (uint8_t type)
 }
 
 bool checkBlock (Sd2Card &card, uint64_t number);
-
 
 void testSD()
 {
@@ -30,7 +30,7 @@ void testSD()
     Label lbl2("Touch to continue", ILI9341_LIGHTGREY, ILI9341_BLACK, VERT_CENTER|HORZ_CENTER);
     lbl2.setPositionAndSize(0,8*RH, 26*CW, RH); lbl2.draw(tft);
 
-    waitForTouch();    
+    waitForTouch(touch);    
     return;
   }
   
