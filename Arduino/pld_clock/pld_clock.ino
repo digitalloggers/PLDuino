@@ -50,7 +50,8 @@ void setup()
   // You can, for example, receive it via ESP's Wi-Fi.
   Serial.print("Setting clock to 10/26/2015 07:28... ");
   tmElements_t tm;
-  tm.Year = 2015;
+  const int y = 2015;
+  tm.Year = (y>=1000? CalendarYrToTm(y) : y2kYearToTm(y));
   tm.Month = 10;
   tm.Day = 26;
   tm.Hour = 7;
