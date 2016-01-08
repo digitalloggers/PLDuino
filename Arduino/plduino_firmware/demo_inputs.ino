@@ -5,13 +5,11 @@
 #include <PLDTouch.h>
 #include <PLDuinoGUI.h>
 #include <using_namespace_PLDuinoGUI.h>
-
-String getTimeStr();
-String getDateStr();
+#include "utils.h"
 
 void showInputs(unsigned long timeout_seconds)
 {
-  bmpDraw("inputs.bmp", 0, 0);
+  bmpDraw(tft, "inputs.bmp", 0, 0);
   Label lblBack("", ILI9341_RED);
   lblBack.setPositionAndSize(111, 195, 100, 35);
   
@@ -115,7 +113,7 @@ void showInputs(unsigned long timeout_seconds)
     
     if (!soundPlayed)
     {
-      playSound("part4.wav"); 
+      playSound(tmrpcm, "part4.wav"); 
       soundPlayed = true;
     }
   }
