@@ -14,8 +14,7 @@ namespace PLDuinoGUI
 		uint16_t textcolor
 	)
 	{
-		tft.fillRect(x, y, width, height, color);
-		tft.drawRect(x+1, y+1, width-2, height-2, textcolor);
+		tft.fillRoundRect(x, y, width, height, 9, color);
 		drawAlignedText(tft, text, x, y, width, height, textcolor, FONTSIZE, VERT_CENTER|HORZ_CENTER);
 	}
 

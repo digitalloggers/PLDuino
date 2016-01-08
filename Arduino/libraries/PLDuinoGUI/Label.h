@@ -10,8 +10,8 @@ namespace PLDuinoGUI
 	public:
 		Label (
 			const String &text,
-			uint16_t textcolor,
-			uint16_t background = ILI9341_WHITE,
+			uint16_t textcolor = ILI9341_WHITE,
+			uint16_t background = ILI9341_BLACK,
 			unsigned char alignmode = HORZ_LEFT|VERT_CENTER
 		);
 		virtual void updateText (const String &newtext, Adafruit_GFX &tft);

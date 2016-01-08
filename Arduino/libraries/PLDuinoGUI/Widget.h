@@ -14,7 +14,7 @@ namespace PLDuinoGUI
 	{
 	public:
 		// Expected to be used with Sizers, so no xywh are passed
-		Widget (uint16_t forecolor = ILI9341_BLACK, uint16_t backcolor = ILI9341_WHITE);
+		Widget (uint16_t forecolor = ILI9341_WHITE, uint16_t backcolor = ILI9341_BLACK);
 
 		// Drawable
 		virtual void erase (Adafruit_GFX &tft) const;
