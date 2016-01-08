@@ -1,6 +1,7 @@
 #include <Arduino.h>
 
 
+// Assembles "HH:MM:SS" string (e.g. "09:30:00") from current time values.
 String getTimeStr()
 {
   char buffer[30];
@@ -9,6 +10,7 @@ String getTimeStr()
 }
 
 
+// Assembles "mm:dd:yy" string (e.g. "02 29 16", i.e. February 29th, 2016) from current date values.
 String getDateStr()
 {
   char buffer[30];
@@ -45,6 +47,7 @@ int daysInMonth (int year, int month) // 1==january
 }
 
 
+// Just pauses execution until the screen is touched.
 void waitForTouch()
 {
   while(!touch.dataAvailable());
@@ -52,7 +55,8 @@ void waitForTouch()
 }
 
 
-// Returns true if was really touched, otherwise false (i.e. exit by timeout)
+// Waits until the user touches the screen, or timeout expires.
+// Returns true if touched, otherwise false (i.e. exit by timeout)
 bool waitForTouchOrTimeout (int seconds)
 {
   unsigned long starttime = millis();
@@ -75,6 +79,8 @@ void playSound (const char *filename)
 }
 
 
+// Draws BMP image on screen.
+// x, y - position where to draw.
 #define BUFFPIXEL 80
 void bmpDraw(const char *filename, uint8_t x, uint16_t y)
 {
@@ -204,3 +210,4 @@ uint32_t read32(File &f) {
   ((uint8_t *)&result)[3] = f.read(); // MSB
   return result;
 }
+

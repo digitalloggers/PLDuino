@@ -97,7 +97,6 @@ void testWiFi()
 
   // Initializing ESP module
   PLDuino::enableESP();
-  Serial2.begin(9600);
   HardwareSerial &wifi = Serial2;
 
   tft.println("done.");
@@ -136,6 +135,7 @@ void testWiFi()
         // Remove this command from the buffer
         recv = recv.substring(2);
         
+        Serial.print(cmd);
         // Print only "R*"/"r*" and "O*"/"o*" commands
         if (cmd != "ss")
           tft.print(cmd);

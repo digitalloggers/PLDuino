@@ -38,11 +38,14 @@ void blinkLED()
 
 void setup()
 {
+  // A convenient macro which prints start-up messages to both LCD and Serial.
   #define LOG(msg) { tft.println(msg); Serial.println(msg); }
   
   // Set pin modes and initialize stuff
+  // NB: This line is necessary in all sketches which use PLDuino library stuff.
   PLDuino::init();
   
+  // Signal that the demo firmware is started.
   blinkLED();
   
   // Power-on LCD and set it up
@@ -50,59 +53,58 @@ void setup()
   tft.begin();
   tft.setRotation(3);
 
-  // Choose mode
-  if (!digitalRead(PLDuino::DIN2))
+  // Setup serials. Serial2 is connected to ESP-02 Wi-Fi module.
+  Serial.begin(9600);
+  Serial2.begin(9600);
+  
+  // Print version info.
+  tft.fillScreen(ILI9341_BLACK);
+  LOG("PLDuino firmware v" VERSION ", built " __DATE__)
+  LOG("")
+
+  // We need to initialize SD card at startup!
+  LOG("Initializing SD card...")
+  card_initialized = card.init(SPI_HALF_SPEED, PLDuino::SD_CS);
+  if (!SD.begin(PLDuino::SD_CS))
+    LOG("ERROR: Can't initialize SD card!")
+
+  // Initializing touch screen.
+  LOG("Initializing touch...")
+  touch.init(1);
+
+  // Initializing real-time clock.
+  LOG("Initializing RTC...")
+  setSyncProvider(RTC.get);
+  if (timeStatus() != timeSet)
+    LOG("ERROR: Unable to sync with the RTC")
+  
+  // Setup speaker pin to play sounds.
+  tmrpcm.speakerPin = 9;
+  
+  // Initialization is complete. 
+  LOG("")
+  LOG("Initialization complete.")
+  LOG("")
+  LOG("-- Touch to keep the log on screen --")
+  delay(1500);
+  while(touch.dataAvailable()) touch.read();
+  tft.fillScreen(ILI9341_BLACK);
+
+  // Detect mode of operation.
+  // Enter demo mode if no DINs are connected.
+  bool testmode = false;
+  for(int i=1; i<8; ++i)
+    testmode |= !digitalRead(PLDuino::DIN1+i);
+  if (testmode)
   {
-    // ESP programming mode
-    tft.fillScreen(ILI9341_RED);
-    tft.setTextColor(ILI9341_YELLOW);
-    tft.setTextSize(3);
-    tft.setCursor(30,100);
-    tft.println("ESP prog mode");
-    flashESPMode();
+    // In test mode, it provides a sequence of screens to check if PLD's facitilies work properly.
+    // You need to activate any DIN to enter this mode (see above).
+    test();
   }
   else
   {
-    // Test or Demo mode selection
-
-    Serial.begin(115200);
-    
-    tft.fillScreen(ILI9341_BLACK);
-    LOG("PLDuino firmware v" VERSION ", built " __DATE__)
-    LOG("")
-  
-    // We need to initialize SD card at startup!
-    LOG("initializing SD card...")
-    card_initialized = card.init(SPI_HALF_SPEED, PLDuino::SD_CS);
-    if (!SD.begin(PLDuino::SD_CS))
-      LOG("ERROR: Can't initialize SD card!")
-  
-    LOG("Initializing touch...")
-    touch.init(1);
-  
-    LOG("Initializing RTC...")
-    setSyncProvider(RTC.get);
-    if (timeStatus() != timeSet)
-      LOG("ERROR: Unable to sync with the RTC")
-  
-    tmrpcm.speakerPin = 9;
-  
-    LOG("")
-    LOG("Initialization complete.")
-    LOG("")
-    LOG("-- Touch to keep the log on screen --")
-    delay(1500);
-    while(touch.dataAvailable()) touch.read();
-    tft.fillScreen(ILI9341_BLACK);
-  
-    // Enter demo mode if no DINs are connected.
-    bool testmode = false;
-    for(int i=1; i<8; ++i)
-      testmode |= !digitalRead(PLDuino::DIN1+i);
-    if (testmode)
-      test();
-    else
-      demo();
+    // The code shows a sequence of slides in demo mode.
+    demo();
   }
 }
 
