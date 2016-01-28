@@ -12,11 +12,12 @@ String zpad (long num, int width)
 }
 
 const char time_packet_example[] = "2013" "01" "15" "T" "20" "30" "40"; // ISO format
-const int TIME_PACKET_SIZE = sizeof(time_packet_example)-1; // NULL terminator
+const int TIME_PACKET_SIZE = sizeof(time_packet_example)-1; // -1 is NULL terminator
+
 void setup()
 {
   Serial.begin(9600);
-  //PLDuino::init();
+  PLDuino::init();
   setSyncProvider(RTC.get);
   if (timeStatus() != timeSet)
     while(true) Serial.println("ERR ");
