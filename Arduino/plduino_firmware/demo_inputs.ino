@@ -22,14 +22,14 @@ void showInputs(unsigned long timeout_seconds)
   lblDate.draw(tft);
   
   Label lblAINtitle[] = {
-    Label("AIN1 = ", ILI9341_WHITE, ILI9341_BLACK),
-    Label("AIN2 = ", ILI9341_WHITE, ILI9341_BLACK),
-    Label("AIN3 = ", ILI9341_WHITE, ILI9341_BLACK),
-    Label("AIN4 = ", ILI9341_WHITE, ILI9341_BLACK),
-    Label("AIN5 = ", ILI9341_WHITE, ILI9341_BLACK),
-    Label("AIN6 = ", ILI9341_WHITE, ILI9341_BLACK),
-    Label("AIN7 = ", ILI9341_WHITE, ILI9341_BLACK),
-    Label("AIN8 = ", ILI9341_WHITE, ILI9341_BLACK),
+    Label("  A0 = ", ILI9341_WHITE, ILI9341_BLACK),
+    Label("  A1 = ", ILI9341_WHITE, ILI9341_BLACK),
+    Label("  A2 = ", ILI9341_WHITE, ILI9341_BLACK),
+    Label("  A3 = ", ILI9341_WHITE, ILI9341_BLACK),
+    Label("  A4 = ", ILI9341_WHITE, ILI9341_BLACK),
+    Label("  A5 = ", ILI9341_WHITE, ILI9341_BLACK),
+    Label("  A6 = ", ILI9341_WHITE, ILI9341_BLACK),
+    Label("  A7 = ", ILI9341_WHITE, ILI9341_BLACK),
   };
   Label lblAIN[] = {
     Label("---", ILI9341_WHITE, ILI9341_BLACK),
@@ -105,8 +105,8 @@ void showInputs(unsigned long timeout_seconds)
     // update inputs display
     for(int i=0; i<8; ++i)
     {
-      lblDIN[i].updateText((digitalRead(PLDuino::DIN1 + i) == HIGH? "1" : "0"), tft);
-      lblAIN[i].updateText(String(analogRead(PLDuino::AIN1+i)), tft);
+      lblDIN[i].updateText((digitalRead(30 + i) == HIGH? "1" : "0"), tft);
+      lblAIN[i].updateText(String(analogRead(A0+i)), tft);
     }
     lblTime.updateText(getTimeStr(), tft);
     lblDate.updateText(getDateStr(), tft);

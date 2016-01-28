@@ -46,7 +46,7 @@ void testDOUTs()
 
       for(int i=0; i<8; ++i)
         if (lblDOUT[i].isTouched(x, y))
-          digitalWrite(PLDuino::DOUT1+i, (digitalRead(PLDuino::DOUT1+i)==HIGH? LOW : HIGH));
+          digitalWrite(38+i, (digitalRead(38+i)==HIGH? LOW : HIGH));
       
       while(touch.dataAvailable()) touch.read();
     }
@@ -54,7 +54,7 @@ void testDOUTs()
     // Redraw labels according to outlets state
     for(int i=0; i<8; ++i)
     {
-      bool switched_on = (digitalRead(PLDuino::DOUT1+i) == HIGH);
+      bool switched_on = (digitalRead(38+i) == HIGH);
       lblDOUT[i].updateTextAndColor(
         "D" + String(38+i),
         (switched_on? ILI9341_YELLOW : ILI9341_BLUE),

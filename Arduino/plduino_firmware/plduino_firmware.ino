@@ -11,7 +11,7 @@
 #include <Time.h>
 #include <Wire.h>
 
-#define VERSION "1.2.1.0"
+#define VERSION "1.2.2.0"
 
 Adafruit_ILI9341 tft = Adafruit_ILI9341(PLDuino::LCD_CS, PLDuino::LCD_DC);
 PLDTouch touch(PLDuino::TOUCH_CS, PLDuino::TOUCH_IRQ);
@@ -89,7 +89,7 @@ void setup()
   // Enter demo mode if no DINs are connected.
   bool testmode = false;
   for(int i=1; i<8; ++i)
-    testmode |= !digitalRead(PLDuino::DIN1+i);
+    testmode |= !digitalRead(30+i);
   if (testmode)
   {
     // In test mode, it provides a sequence of screens to check if PLD's facitilies work properly.

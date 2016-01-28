@@ -14,7 +14,7 @@ void setup()
 void loop()
 {
   // Simply use Arduino's analogRead() call to read AINs.
-  Serial.println("AIN1: " + String(analogRead(PLDuino::AIN1)));
+  Serial.println("A0: " + String(analogRead(A0)));
   delay(100);
 }
 

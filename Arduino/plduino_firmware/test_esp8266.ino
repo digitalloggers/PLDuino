@@ -52,7 +52,7 @@ void processCommand (const String &cmd, HardwareSerial &wifi)
       // switch DOUT
       if (index < 8) {
         Serial.println("dout" + String(index) + (op=='O'? "ON" : "off"));
-        digitalWrite(DOUT1+index, (op=='O'? HIGH : LOW));
+        digitalWrite(38+index, (op=='O'? HIGH : LOW));
       }
       break;
 
@@ -63,11 +63,11 @@ void processCommand (const String &cmd, HardwareSerial &wifi)
       for(int i=0; i<6; ++i)
         wifi.write(digitalRead(RELAY1+i)==HIGH? "1" : "0");
       for(int i=0; i<8; ++i)
-        wifi.write(digitalRead(DIN1+i)==HIGH? "1" : "0");
+        wifi.write(digitalRead(30+i)==HIGH? "1" : "0");
       for(int i=0; i<8; ++i)
-        wifi.write(digitalRead(DOUT1+i)==HIGH? "1" : "0");
+        wifi.write(digitalRead(38+i)==HIGH? "1" : "0");
       for(int i=0; i<8; ++i)
-        wifi.write(fmt(analogRead(AIN1+i),4).c_str());
+        wifi.write(fmt(analogRead(A0+i),4).c_str());
       wifi.write((
           fmt(hour(),2) +
           fmt(minute(), 2)

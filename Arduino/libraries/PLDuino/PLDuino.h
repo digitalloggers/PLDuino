@@ -12,33 +12,6 @@ namespace PLDuino
 		RELAY5 = 6,
 		RELAY6 = 7,
 
-		DIN1 = 30,
-		DIN2 = 31,
-		DIN3 = 32,
-		DIN4 = 33,
-		DIN5 = 34,
-		DIN6 = 35,
-		DIN7 = 36,
-		DIN8 = 37,
-
-		DOUT1 = 38,
-		DOUT2 = 39,
-		DOUT3 = 40,
-		DOUT4 = 41,
-		DOUT5 = 42,
-		DOUT6 = 43,
-		DOUT7 = 44,
-		DOUT8 = 45,
-
-		AIN1 = 0,
-		AIN2 = 1,
-		AIN3 = 2,
-		AIN4 = 3,
-		AIN5 = 4,
-		AIN6 = 5,
-		AIN7 = 6,
-		AIN8 = 7,
-
 		UART_RXD = 14,
 		UART_TXD = 15,
 
@@ -76,6 +49,7 @@ namespace PLDuino
 
 	void enableESP();
 	void disableESP();
+	void resetESP();
 
 	void enableLCD(); // also powers on SD card
 	void disableLCD();

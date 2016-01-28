@@ -15,6 +15,7 @@ void testInputs()
   lblDate.draw(tft);
   
   Label lblAINtitle[] = {
+    Label("A0 = ", ILI9341_WHITE, ILI9341_BLACK),
     Label("A1 = ", ILI9341_WHITE, ILI9341_BLACK),
     Label("A2 = ", ILI9341_WHITE, ILI9341_BLACK),
     Label("A3 = ", ILI9341_WHITE, ILI9341_BLACK),
@@ -22,7 +23,6 @@ void testInputs()
     Label("A5 = ", ILI9341_WHITE, ILI9341_BLACK),
     Label("A6 = ", ILI9341_WHITE, ILI9341_BLACK),
     Label("A7 = ", ILI9341_WHITE, ILI9341_BLACK),
-    Label("A8 = ", ILI9341_WHITE, ILI9341_BLACK),
   };
   Label lblAIN[] = {
     Label("---", ILI9341_WHITE, ILI9341_BLACK),
@@ -89,8 +89,8 @@ void testInputs()
     // update inputs display
     for(int i=0; i<8; ++i)
     {
-      lblDIN[i].updateText((digitalRead(PLDuino::DIN1+i) == HIGH? "1" : "0"), tft);
-      lblAIN[i].updateText(String(analogRead(PLDuino::AIN1+i)), tft);
+      lblDIN[i].updateText((digitalRead(30+i) == HIGH? "1" : "0"), tft);
+      lblAIN[i].updateText(String(analogRead(A0+i)), tft);
     }
   }
   tft.fillScreen(ILI9341_BLACK);  
