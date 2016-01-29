@@ -70,7 +70,7 @@ namespace PLDuino
 		for(int i=0; i<8; ++i)
 		{
 			pinMode(A0+i, INPUT);
-			digitalWrite(A0+i, HIGH);
+			digitalWrite(A0+i, LOW);
 		}
 
 		// Setup digital output pins
