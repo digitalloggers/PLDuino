@@ -7,8 +7,8 @@ Contributors:
 
 */
 
-#ifndef TMRpcm_h   // if x.h hasn't been included yet...
-#define TMRpcm_h   //   #define this so the compiler knows it has been included
+#ifndef TMRpcm_PLDuino_h   // if x.h hasn't been included yet...
+#define TMRpcm_PLDuino_h   //   #define this so the compiler knows it has been included
 
 #include <Arduino.h>
 #include <pcmConfig.h>

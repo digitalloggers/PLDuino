@@ -3,7 +3,7 @@
 #define pcmRF_h   //   #define this so the compiler knows it has been included
 
 #include <Arduino.h>
-#include <TMRpcm.h>
+#include <TMRpcm_PLDuino.h>
 
 
 #if defined (ENABLE_RF)

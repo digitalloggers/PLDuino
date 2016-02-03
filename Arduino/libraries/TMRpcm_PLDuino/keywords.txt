@@ -1,4 +1,4 @@
-TMRpcm	KEYWORD1
+TMRpcm_PLDuino	KEYWORD1
 play	KEYWORD2
 stopPlayback	KEYWORD2
 volume	KEYWORD2
