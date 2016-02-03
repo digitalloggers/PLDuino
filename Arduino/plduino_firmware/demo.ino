@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <TMRpcm.h>
+#include <TMRpcm_PLDuino.h>
 #include <SPI.h>
 #include <SD.h>
 #include <Adafruit_GFX.h>

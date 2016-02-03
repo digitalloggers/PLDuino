@@ -1,7 +1,7 @@
 #pragma once
 #include <Arduino.h>
 #include <Adafruit_ILI9341.h>
-#include <TMRpcm.h>
+#include <TMRpcm_PLDuino.h>
 #include <PLDTouch.h>
 
 String getTimeStr();
