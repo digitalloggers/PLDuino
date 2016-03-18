@@ -10,6 +10,7 @@
 #include <DS3232RTC.h>
 #include <Time.h>
 #include <Wire.h>
+#include "utils.h"
 
 #define VERSION "1.2.2.0"
 
@@ -30,6 +31,8 @@ void blinkLED()
 
 void test();
 void demo();
+RunMode selectMode (RunMode defmode);
+void testWiFi();
 
 void setup()
 {
@@ -85,21 +88,24 @@ void setup()
   while(touch.dataAvailable()) touch.read();
   tft.fillScreen(ILI9341_BLACK);
 
-  // Detect mode of operation.
-  // Enter demo mode if no DINs are connected.
   bool testmode = false;
   for(int i=1; i<8; ++i)
     testmode |= !digitalRead(30+i);
-  if (testmode)
+  switch(showModeSelectionScreen(testmode? MODE_TEST : MODE_DEMO))
   {
-    // In test mode, it provides a sequence of screens to check if PLD's facitilies work properly.
-    // You need to activate any DIN to enter this mode (see above).
-    test();
-  }
-  else
-  {
-    // The code shows a sequence of slides in demo mode.
-    demo();
+    case MODE_DEMO:
+      demo();
+      break;
+    case MODE_TEST:
+      test();
+      break;
+    case MODE_WIFI:
+      testWiFi();
+      break;
+    default:
+      Serial.println("Unknown mode. Running demo.");
+      demo();
+      break;
   }
 }
 

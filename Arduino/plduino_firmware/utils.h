@@ -14,3 +14,9 @@ bool waitForTouchOrTimeout (PLDTouch &touch, int seconds);
 void playSound (TMRpcm &tmrpcm, const char *filename);
 void bmpDraw(Adafruit_ILI9341 &tft, const char *filename, uint8_t x, uint16_t y);
 
+enum RunMode {
+  MODE_DEMO,
+  MODE_TEST,
+  MODE_WIFI
+};
+
