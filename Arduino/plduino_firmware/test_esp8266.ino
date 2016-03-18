@@ -104,9 +104,12 @@ void testWiFi()
   tft.println();
 
   // Print Wi-Fi credentials for convenience
-  tft.println("Connect to \"Wi-Fi Test\" hotspot");
+  tft.setTextColor(ILI9341_YELLOW);
+  tft.setTextSize(2);
+  tft.println("Connect to \"Wi-Fi Test\"");
   tft.println("using password \"password\".");
-  tft.println();
+  tft.setTextColor(ILI9341_WHITE);
+  tft.setTextSize(1);
   
   // Reset ESP
   digitalWrite(PLDuino::ESP_RST, LOW);
