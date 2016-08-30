@@ -9,6 +9,7 @@
 #include <using_namespace_PLDuinoGUI.h>
 #include <DS3232RTC.h>
 #include <Time.h>
+#include <TimeLib.h>
 #include <Wire.h>
 #include "utils.h"
 
