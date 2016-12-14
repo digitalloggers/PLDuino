@@ -116,7 +116,7 @@ void bmpDraw(Adafruit_ILI9341 &tft, const char *filename, uint8_t x, uint16_t y)
   Serial.println('\'');
 
   // Open requested file on SD card
-  if ((bmpFile = SD.open(filename)) == NULL)
+  if (!(bmpFile = SD.open(filename)))
   {
     Serial.print(F("File not found"));
     return;
