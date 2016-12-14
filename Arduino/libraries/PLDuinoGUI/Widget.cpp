@@ -1,4 +1,3 @@
-#pragma once
 #include <Arduino.h>
 #include "Widget.h"
 #include "Settings.h"

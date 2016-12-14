@@ -1,4 +1,3 @@
-#pragma once
 #include "GridLayout.h"
 
 namespace PLDuinoGUI
