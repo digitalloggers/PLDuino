@@ -1,5 +1,6 @@
 #include <PLDuino.h>
 #include <Time.h>
+#include <TimeLib.h>
 #include <DS3232RTC.h>
 #include <Wire.h>
 using namespace PLDuino;
