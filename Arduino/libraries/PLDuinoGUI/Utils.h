@@ -23,7 +23,8 @@ namespace PLDuinoGUI
 			uint16_t width, uint16_t height,
 			const String &text,
 			uint16_t color,
-			uint16_t textcolor
+			uint16_t textcolor,
+			bool transparent
 		);
 		void drawAlignedText(
 			Adafruit_GFX &tft,

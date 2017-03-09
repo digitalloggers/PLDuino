@@ -110,13 +110,14 @@ void bmpDraw(Adafruit_ILI9341 &tft, const char *filename, uint8_t x, uint16_t y)
 
   if (x>=tft.width() || y>=tft.height()) return;
 
+/*
   Serial.println();
   Serial.print(F("Loading image '"));
   Serial.print(filename);
   Serial.println('\'');
-
+*/
   // Open requested file on SD card
-  if (!(bmpFile = SD.open(filename)))
+  if ((bmpFile = SD.open(filename)) == NULL)
   {
     Serial.print(F("File not found"));
     return;
@@ -126,28 +127,31 @@ void bmpDraw(Adafruit_ILI9341 &tft, const char *filename, uint8_t x, uint16_t y)
   if (read16(bmpFile) == 0x4D42)
   {
     // BMP signature
-    Serial.print(F("File size: ")); Serial.println(read32(bmpFile));
+    //Serial.print(F("File size: ")); Serial.println(
+    read32(bmpFile);
     (void)read32(bmpFile); // Read & ignore creator bytes
     bmpImageoffset = read32(bmpFile); // Start of image data
-    Serial.print(F("Image Offset: ")); Serial.println(bmpImageoffset, DEC);
+    //Serial.print(F("Image Offset: ")); Serial.println(bmpImageoffset, DEC);
     // Read DIB header
-    Serial.print(F("Header size: ")); Serial.println(read32(bmpFile));
+    //Serial.print(F("Header size: ")); Serial.println(
+    read32(bmpFile);
     bmpWidth  = read32(bmpFile);
     bmpHeight = read32(bmpFile);
     if (read16(bmpFile) == 1)
     {
       // # planes -- must be '1'
       bmpDepth = read16(bmpFile); // bits per pixel
-      Serial.print(F("Bit Depth: ")); Serial.println(bmpDepth);
+      //Serial.print(F("Bit Depth: ")); Serial.println(bmpDepth);
       if((bmpDepth == 24) && (read32(bmpFile) == 0))
       {
         // 0 = uncompressed
         goodBmp = true; // Supported BMP format -- proceed!
+        /*
         Serial.print(F("Image size: "));
         Serial.print(bmpWidth);
         Serial.print('x');
         Serial.println(bmpHeight);
-
+*/
         // BMP rows are padded (if needed) to 4-byte boundary
         rowSize = (bmpWidth * 3 + 3) & ~3;
 
@@ -195,9 +199,10 @@ void bmpDraw(Adafruit_ILI9341 &tft, const char *filename, uint8_t x, uint16_t y)
             tft.pushColor(tft.color565(r,g,b));
           }
         }
+        /*
         Serial.print(F("Loaded in "));
         Serial.print(millis() - startTime);
-        Serial.println(" ms");
+        Serial.println(" ms");*/
       }
     }
   }

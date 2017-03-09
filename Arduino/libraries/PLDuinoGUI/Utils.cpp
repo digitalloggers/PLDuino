@@ -11,10 +11,11 @@ namespace PLDuinoGUI
 		uint16_t width, uint16_t height,
 		const String &text,
 		uint16_t color,
-		uint16_t textcolor
+		uint16_t textcolor,
+		bool transparent
 	)
 	{
-		tft.fillRoundRect(x, y, width, height, 9, color);
+		if (!transparent) tft.fillRoundRect(x, y, width, height, 9, color);
 		drawAlignedText(tft, text, x, y, width, height, textcolor, FONTSIZE, VERT_CENTER|HORZ_CENTER);
 	}
 

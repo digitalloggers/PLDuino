@@ -1,6 +1,6 @@
 #include <PLDuino.h>
 #include <PLDuinoGUI.h>
-#include <TMRpcm.h>
+#include <TMRpcm_PLDuino.h>
 #include <SPI.h>
 #include <SD.h>
 #include <Adafruit_GFX.h>
@@ -10,7 +10,7 @@
 #include <PLDuinoGUI.h>
 #include <using_namespace_PLDuinoGUI.h>
 #include <DS3232RTC.h>
-#include <Time.h>
+#include <TimeLib.h>
 #include <Wire.h>
 #include <avr/io.h>
 
@@ -92,14 +92,14 @@ void showFlashControls()
       else
       {
         digitalWrite(PLDuino::ESP_GPIO0, HIGH);
-        Serial.begin(9600);
-        Serial2.begin(9600);
+        Serial.begin(115200);
+        Serial2.begin(115200);
       }
 
       lblNote.updateText(
         progMode?
           "GPIO is low now, ESP has  been reset. You can pro-  gram it on 115200 rate."
-        : "GPIO is high, ESP has     been reset. You can work  with NodeMCU now on 9600  baud rate.",
+        : "GPIO is high, ESP has     been reset. You can work with NodeMCU now on 115200 baud rate.",
         tft
       );
       
@@ -160,8 +160,8 @@ void setup()
   tft.begin();
   tft.setRotation(3);
   touch.init(1);
-  Serial.begin(9600);
-  Serial2.begin(9600);
+  Serial.begin(115200);
+  Serial2.begin(115200);
 
   show2400msg();
   while(touch.dataAvailable()) touch.read();

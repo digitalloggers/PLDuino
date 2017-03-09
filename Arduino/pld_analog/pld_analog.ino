@@ -4,7 +4,7 @@ using namespace PLDuino;
 void setup()
 {
   // Initializing Serial.
-  Serial.begin(9600);
+  Serial.begin(115200);
   
   // A necessary call.
   // It sets pin modes according to their function.

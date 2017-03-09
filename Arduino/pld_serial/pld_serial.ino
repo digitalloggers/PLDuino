@@ -6,7 +6,7 @@ void setup()
   PLDuino::init();
 
   // Initializing Serial (you can monitor it via USB).
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   // Send example message.
   Serial.println("Hello world!");

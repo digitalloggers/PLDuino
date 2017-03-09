@@ -1,3 +1,4 @@
+#pragma once
 #include "Utils.h"
 #include "Label.h"
 
@@ -10,7 +11,10 @@ namespace PLDuinoGUI
 		uint16_t background,
 		unsigned char alignmode
 	)
-		: Widget(textcolor, background), text_(text), alignmode_(alignmode)
+		: Widget(textcolor, background),
+		  text_(text),
+		  alignmode_(alignmode),
+		  font_size_(FONTSIZE)
 	{
 	}
 
@@ -36,7 +40,7 @@ namespace PLDuinoGUI
 			text_,
 			x(), y(), width(), height(),
 			color_,
-			FONTSIZE,
+			font_size_,
 			alignmode_
 		);
 	}
@@ -49,7 +53,7 @@ namespace PLDuinoGUI
 			text_,
 			x(), y(), width(), height(),
 			backcolor_,
-			FONTSIZE,
+			font_size_,
 			alignmode_
 		);
 	}

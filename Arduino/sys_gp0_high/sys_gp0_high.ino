@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <PLDuino.h>
-#define FLASH_ESP_BAUD 9600
+#define FLASH_ESP_BAUD 115200
 
 void setup()
 {

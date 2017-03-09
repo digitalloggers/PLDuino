@@ -16,7 +16,7 @@ const int TIME_PACKET_SIZE = sizeof(time_packet_example)-1; // -1 is NULL termin
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
   PLDuino::init();
   setSyncProvider(RTC.get);
   if (timeStatus() != timeSet)

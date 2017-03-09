@@ -16,7 +16,7 @@ void setup()
   PLDuino::init();
 
   // Initializing Serial.
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   // Initializing Wire library to communicate with EEPROM IC via I2C bus.
   Wire.begin();

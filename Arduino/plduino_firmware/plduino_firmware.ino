@@ -53,8 +53,8 @@ void setup()
   tft.setRotation(3);
 
   // Setup serials. Serial2 is connected to ESP-02 Wi-Fi module.
-  Serial.begin(9600);
-  Serial2.begin(9600);
+  Serial.begin(115200);
+  Serial2.begin(115200);
   
   // Print version info.
   tft.fillScreen(ILI9341_BLACK);

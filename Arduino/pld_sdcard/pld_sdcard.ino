@@ -6,7 +6,7 @@
 void setup()
 {
   // Initializing Serial.
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   // Initializing SD card.
   if (!SD.begin(PLDuino::SD_CS))

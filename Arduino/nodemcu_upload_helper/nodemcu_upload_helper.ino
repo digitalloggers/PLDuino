@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <PLDuino.h>
-#define ESP_BAUD 9600
+#define ESP_BAUD 115200
 
 String getResponse()
 {

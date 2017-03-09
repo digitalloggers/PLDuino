@@ -6,10 +6,10 @@ void setup()
   PLDuino::init();
   
   // Initialization of USB-attached serial.
-  Serial.begin(9600);
+  Serial.begin(115200);
   
   // Initialization of external Serial (RS-232).
-  Serial3.begin(9600);
+  Serial3.begin(115200);
 }
 
 void loop()

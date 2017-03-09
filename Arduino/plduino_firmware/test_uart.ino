@@ -25,7 +25,7 @@ void testUARTLoopback()
       if (lblStart.isTouched(pt.x, pt.y))
       {
         bool failed = false;
-        Serial3.begin(9600);
+        Serial3.begin(115200);
         Serial3.flush();
         while(Serial3.available()) Serial3.read();
         for(long ch = 0x00; ch <= 0xff && !failed; ++ch)

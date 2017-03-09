@@ -93,6 +93,9 @@ namespace PLDuino
 	    PORTH |= (1<<PH2); // set BOE High
 	    delay(200);
 	    PORTH &= ~(1<<PH2); // BOE low
+	    
+		pinMode(PLDuino::LCD_CS, OUTPUT);
+		digitalWrite(PLDuino::LCD_CS, HIGH);
 	}
 
 
