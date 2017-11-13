@@ -1,34 +1,31 @@
 #pragma once
 #include "Arduino.h"
+#include "Point.h"
 
-#define NO_ROTATION	0
-#define ROTATE_90	1
-#define ROTATE_180	2
-#define ROTATE_270	3
+#define PLDTOUCH_NO_ROTATION 3
+#define PLDTOUCH_ROTATE_90   0
+#define PLDTOUCH_ROTATE_180  1
+#define PLDTOUCH_ROTATE_270  2
 
-
-struct Point {
-	unsigned long x, y;
-	Point() { x=-1, y=-1; }
-	Point(unsigned long x0, unsigned long y0) : x(x0), y(y0) {}
-	Point(const Point &pt) { x=pt.x; y=pt.y; }
-	bool isValid() const { return !(x==-1 && y==-1); }
-};
-
+// Legacy constants. Deprecated
+#define NO_ROTATION PLDTOUCH_ROTATE_90
+#define ROTATE_90   PLDTOUCH_ROTATE_180
+#define ROTATE_180  PLDTOUCH_ROTATE_270
+#define ROTATE_270  PLDTOUCH_NO_ROTATION
 
 class PLDTouch
 {
 public:
-	PLDTouch (byte tcs, byte irq);
-	void init (byte rotation = NO_ROTATION);
-
-	bool dataAvailable();
-	Point read (int precision = 100);
-	Point readRaw();
-
+    PLDTouch(byte tcs, byte irq, long display_width=320, long display_height=240);
+    void init(byte rotation = PLDTOUCH_ROTATE_90);
+    void updateCalibrationData(long left, long top, long right, long bottom);
+    bool dataAvailable();
+    Point read(int precision = 100);
+    Point readRaw();
+    Point touch_to_display(const Point &touchpt) const;
 private:
-	byte T_CS, T_IRQ;
-	byte rotation, _default_orientation;
-	long disp_x_size, disp_y_size;
-	long touch_x_left, touch_x_right, touch_y_top, touch_y_bottom;
+    long cal_left, cal_top, cal_right, cal_bottom;
+    byte T_CS, T_IRQ;
+    byte rotation;
+    long display_width, display_height;
 };
