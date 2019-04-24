@@ -1,0 +1,57 @@
+.textbox {
+  display: table-cell;
+  width: 90%;
+}
+* {
+  font-family: Arial, Helvetica, sans-serif
+}
+.control-table-header {
+  background-color: #dddddd;
+}
+.control-table tr {
+  background-color: #f4f4f4;
+}
+.control-table tr:hover {
+  background-color: #ededf5;
+}
+.control-table-title {
+  background-color: #ddddff;
+}
+.control-table {
+  width: 100%;
+  border-spacing: 1px;
+  border-collapse: separate;
+}
+.control-table th, .control-table td {
+  padding: 3px;
+}
+input[type="checkbox"] {
+  float: left;
+}
+.status-unknown {
+  font-weight: bold;
+  color: lightgray;
+}
+.status-unknown:after { content: "---"; }
+
+.status-on {
+  font-weight: bold;
+  color: green;
+}
+.status-on:after { content: "ON"; }
+
+.status-off {
+  font-weight: bold;
+  color: red;
+}
+.status-off:after { content: "OFF"; }
+
+.status-analog {
+  font-weight: bold;
+  color: olive;
+}
+
+input[type="radio"] {
+  margin-top: -1px;
+  vertical-align: middle;
+}

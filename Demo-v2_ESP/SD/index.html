@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+  <META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>Control - PLDuino Control Center v2.0</title>
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <script type="text/javascript" src="util.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+</head>
+<body alink="#0000ff" vlink="#0000ff">
+  <table width="100%" cellspacing="0" cellpadding="0">
+    <tbody>
+      <tr>
+        <td width="17%" valign="top">
+          <table bgcolor="#f4f4f4" border="0" cellspacing="1" cellpadding="0"> <!-- menu & version -->
+            <tr><td>
+                <table cellspacing="5" cellpadding="1"> <!-- menu -->
+                  <tr>
+                    <td align="center">
+                      <table><tbody>
+                        <tr>
+                          <td><img alt="Digital Loggers, Inc." src="/logo.gif"></a></td>
+                          <td><b><font size="-1">PLDuino controller</font></b></td>
+                        </tr>
+                      </tbody></table>
+                      <hr>
+                    </td>
+                  </tr>
+                  <tr><td nowrap=""><b>Control and monitor</b></td></tr>
+                  <tr><td nowrap=""><B><A href="/settings.html">Settings</a></b></td></tr>
+                  <tr><td nowrap=""><B><A href="javascript:open('http://' + window.location.hostname + ':9999/')">File Manager</a></b></td></tr>
+                  <TR><TD nowrap=""><B><A href="/support.htm">Support</A></B></TD></TR>
+                  <TR><TD><HR></TD></TR>
+                  <TR><TD><B><A href="/manual.html">Manual</A></B></TD></TR>
+                  <TR><TD><B><A href="/FAQ.html">FAQ</A></B></TD></TR>
+                  <TR><TD><B><A href="/product-info.html">Product Information</A></B></TD></TR>
+                  <TR><TD><B><A href="http://www.digital-loggers.com/1P.html">Digital Loggers, Inc.</A></B></TD></TR>
+                </TABLE>
+            </TD></TR>
+            <TR><TD height="100%" valign="bottom" bgcolor="#f4f4f4"><small>Version 2.0.0 (Dec 2016)</small></TD></TR>
+          </TABLE>
+        </TD>
+        <td>
+          <table class="control-table">
+            <thead><th class="control-table-title" align="left" colspan="5">Relay Control</th></thead>
+            <thead>
+              <th class="control-table-header" width="3%">#</th>
+              <th class="control-table-header" width="10%">State</th>
+              <th class="control-table-header" align="left">Name</th>
+              <th class="control-table-header" width="30%" colspan="2">Action</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="center">1</td>
+                <td align="center"><span id="relay-status-1" class="status-unknown"></span></td>
+                <td><span id="relay-name-1">PLDuino 1-20</span></td>
+                <td><a id="relay1on" href="/relay?on=1">Switch ON</a></td>
+                <td><a id="relay1off" href="/relay?off=1">Switch OFF</a></td>
+              </tr>
+              <tr>
+                <td align="center">2</td>
+                <td align="center"><span id="relay-status-2" class="status-unknown"></span></td>
+                <td><span id="relay-name-2">Relay</span></td>
+                <td><a id="relay2on" href="/relay?on=2">Switch ON</a></td>
+                <td><a id="relay2off" href="/relay?off=2">Switch OFF</a></td>
+              </tr>
+              <tr>
+                <td align="center">3</td>
+                <td align="center"><span id="relay-status-3" class="status-unknown"></span></td>
+                <td><span id="relay-name-3">Relay</span></td>
+                <td><a id="relay3on" id="relay3on" href="/relay?on=3">Switch ON</a></td>
+                <td><a id="relay3off" id="relay3off" href="/relay?off=3">Switch OFF</a></td>
+              </tr>
+              <tr>
+                <td align="center">4</td>
+                <td align="center"><span id="relay-status-4" class="status-unknown"></span></td>
+                <td><span id="relay-name-4">Relay</span></td>
+                <td><a id="relay4on" href="/relay?on=4">Switch ON</a></td>
+                <td><a id="relay4off" href="/relay?off=4">Switch OFF</a></td>
+              </tr>
+              <tr>
+                <td align="center">5</td>
+                <td align="center"><span id="relay-status-5" class="status-unknown"></span></td>
+                <td><span id="relay-name-5">Relay</span></td>
+                <td><a id="relay5on" href="/relay?on=5">Switch ON</a></td>
+                <td><a id="relay5off" href="/relay?off=5">Switch OFF</a></td>
+              </tr>
+              <tr>
+                <td align="center">6</td>
+                <td align="center"><span id="relay-status-6" class="status-unknown"></span></td>
+                <td><span id="relay-name-6">Relay</span></td>
+                <td><a id="relay6on" href="/relay?on=6">Switch ON</a></td>
+                <td><a id="relay6off" href="/relay?off=6">Switch OFF</a></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="control-table">
+            <thead><th class="control-table-title" align="left" colspan="5">Digital outputs Control</th></thead>
+            <thead>
+              <th class="control-table-header" width="3%">#</th>
+              <th class="control-table-header" width="10%">State</th>
+              <th class="control-table-header" align="left">Name</th>
+              <th class="control-table-header" width="30%" colspan="2">Action</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="center">1</td>
+                <td align="center"><span id="dout-status-1" class="status-unknown"></span></td>
+                <td><span id="dout-name-1">Digital output #1</span></td>
+                <td><a id="dout1on" href="/dout?on=1">Switch ON</a></td>
+                <td><a id="dout1off" href="/dout?off=1">Switch OFF</a></td>
+              </tr>
+              <tr>
+                <td align="center">2</td>
+                <td align="center"><span id="dout-status-2" class="status-unknown"></span></td>
+                <td><span id="dout-name-2">Digital output #2</span></td>
+                <td><a id="dout2on" href="/dout?on=2">Switch ON</a></td>
+                <td><a id="dout2off" href="/dout?off=2">Switch OFF</a></td>
+              </tr>
+              <tr>
+                <td align="center">3</td>
+                <td align="center"><span id="dout-status-3" class="status-unknown"></span></td>
+                <td><span id="dout-name-3">Digital output #3</span></td>
+                <td><a id="dout3on" href="/dout?on=3">Switch ON</a></td>
+                <td><a id="dout3off" href="/dout?off=3">Switch OFF</a></td>
+              </tr>
+              <tr>
+                <td align="center">4</td>
+                <td align="center"><span id="dout-status-4" class="status-unknown"></span></td>
+                <td><span id="dout-name-4">Digital output #4</span></td>
+                <td><a id="dout4on" href="/dout?on=4">Switch ON</a></td>
+                <td><a id="dout4off" href="/dout?off=4">Switch OFF</a></td>
+              </tr>
+              <tr>
+                <td align="center">5</td>
+                <td align="center"><span id="dout-status-5" class="status-unknown"></span></td>
+                <td><span id="dout-name-5">Digital output #5</span></td>
+                <td><a id="dout5on" href="/dout?on=5">Switch ON</a></td>
+                <td><a id="dout5off" href="/dout?off=5">Switch OFF</a></td>
+              </tr>
+              <tr>
+                <td align="center">6</td>
+                <td align="center"><span id="dout-status-6" class="status-unknown"></span></td>
+                <td><span id="dout-name-6">Digital output #6</span></td>
+                <td><a id="dout6on" href="/dout?on=6">Switch ON</a></td>
+                <td><a id="dout6off" href="/dout?off=6">Switch OFF</a></td>
+              </tr>
+              <tr>
+                <td align="center">7</td>
+                <td align="center"><span id="dout-status-7" class="status-unknown"></span></td>
+                <td><span id="dout-name-7">Digital output #7</span></td>
+                <td><a id="dout7on" href="/dout?on=7">Switch ON</a></td>
+                <td><a id="dout7off" href="/dout?off=7">Switch OFF</a></td>
+              </tr>
+              <tr>
+                <td align="center">8</td>
+                <td align="center"><span id="dout-status-8" class="status-unknown"></span></td>
+                <td><span id="dout-name-8">Digital output #8</span></td>
+                <td><a id="dout8on" href="/dout?on=8">Switch ON</a></td>
+                <td><a id="dout8off" href="/dout?off=8">Switch OFF</a></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="control-table">
+            <thead><th class="control-table-title" align="left" colspan="5">Digital inputs monitoring</th></thead>
+            <thead>
+              <th class="control-table-header" width="3%">#</th>
+              <th class="control-table-header" width="10%">State</th>
+              <th class="control-table-header" align="left">Name</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="center">1</td>
+                <td align="center"><span id="din-status-1" class="status-unknown"></span></td>
+                <td><span id="din-name-1">Digital input #1</span></td>
+              </tr>
+              <tr>
+                <td align="center">2</td>
+                <td align="center"><span id="din-status-2" class="status-unknown"></span></td>
+                <td><span id="din-name-2">Digital input #2</span></td>
+              </tr>
+              <tr>
+                <td align="center">3</td>
+                <td align="center"><span id="din-status-3" class="status-unknown"></span></td>
+                <td><span id="din-name-3">Digital input #3</span></td>
+              </tr>
+              <tr>
+                <td align="center">4</td>
+                <td align="center"><span id="din-status-4" class="status-unknown"></span></td>
+                <td><span id="din-name-4">Digital input #4</span></td>
+              </tr>
+              <tr>
+                <td align="center">5</td>
+                <td align="center"><span id="din-status-5" class="status-unknown"></span></td>
+                <td><span id="din-name-5">Digital input #5</span></td>
+              </tr>
+              <tr>
+                <td align="center">6</td>
+                <td align="center"><span id="din-status-6" class="status-unknown"></span></td>
+                <td><span id="din-name-6">Digital input #6</span></td>
+              </tr>
+              <tr>
+                <td align="center">7</td>
+                <td align="center"><span id="din-status-7" class="status-unknown"></span></td>
+                <td><span id="din-name-7">Digital input #7</span></td>
+              </tr>
+              <tr>
+                <td align="center">8</td>
+                <td align="center"><span id="din-status-8" class="status-unknown"></span></td>
+                <td><span id="din-name-8">Digital input #8</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="control-table">
+            <thead><th class="control-table-title" align="left" colspan="5">Analog inputs monitoring</th></thead>
+            <thead>
+              <th class="control-table-header" width="3%">#</th>
+              <th class="control-table-header" width="10%">State</th>
+              <th class="control-table-header" align="left">Name</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="center">1</td>
+                <td align="center"><span id="ain-status-1" class="status-analog">----</span></td>
+                <td><span id="ain-name-1">Analog input #1</span></td>
+              </tr>
+              <tr>
+                <td align="center">2</td>
+                <td align="center"><span id="ain-status-2" class="status-analog">----</span></td>
+                <td><span id="ain-name-2">Analog input #2</span></td>
+              </tr>
+              <tr>
+                <td align="center">3</td>
+                <td align="center"><span id="ain-status-3" class="status-analog">----</span></td>
+                <td><span id="ain-name-3">Analog input #3</span></td>
+              </tr>
+              <tr>
+                <td align="center">4</td>
+                <td align="center"><span id="ain-status-4" class="status-analog">----</span></td>
+                <td><span id="ain-name-4">Analog input #4</span></td>
+              </tr>
+              <tr>
+                <td align="center">5</td>
+                <td align="center"><span id="ain-status-5" class="status-analog">----</span></td>
+                <td><span id="ain-name-5">Analog input #5</span></td>
+              </tr>
+              <tr>
+                <td align="center">6</td>
+                <td align="center"><span id="ain-status-6" class="status-analog">----</span></td>
+                <td><span id="ain-name-6">Analog input #6</span></td>
+              </tr>
+              <tr>
+                <td align="center">7</td>
+                <td align="center"><span id="ain-status-7" class="status-analog">----</span></td>
+                <td><span id="ain-name-7">Analog input #7</span></td>
+              </tr>
+              <tr>
+                <td align="center">8</td>
+                <td align="center"><span id="ain-status-8" class="status-analog">----</span></td>
+                <td><span id="ain-name-8">Analog input #8</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table width="100%" align="center" border="0">
+            <tr><td align="right"><span id="datetime">Loading controller's state...</span></td></tr>
+          </table>
+
+        </TD>
+      </TR>
+    </TBODY>
+  </TABLE>
+</BODY>
+</HTML>

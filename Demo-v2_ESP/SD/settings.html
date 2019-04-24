@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+  <META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>Settings - PLDuino Control Center v2.0</title>
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <script type="text/javascript" src="util.js"></script>
+  <script type="text/javascript" src="settings.js"></script>
+</head> 
+<body alink="#0000ff" vlink="#0000ff">
+  <table width="100%" cellspacing="0" cellpadding="0">
+    <tbody>
+      <tr>
+        <td width="17%" valign="top">
+          <table bgcolor="#f4f4f4" border="0" cellspacing="1" cellpadding="0"> <!-- menu & version -->
+            <tr><td>
+                <table cellspacing="5" cellpadding="1"> <!-- menu -->
+                  <tr>
+                    <td align="center">
+                      <table><tbody>
+                        <tr>
+                          <td><img alt="Digital Loggers, Inc." src="/logo.gif"></a></td>
+                          <td><b><font size="-1">PLDuino controller</font></b></td>
+                        </tr>
+                      </tbody></table>
+                      <hr>
+                    </td>
+                  </tr>
+                  <tr><td nowrap=""><b><a href="/index.html">Control and monitor</a></b></td></tr>
+                  <tr><td nowrap=""><B>Settings</b></td></tr>
+                  <tr><td nowrap=""><B><A href="javascript:open('http://' + window.location.hostname + ':9999/')">File Manager</a></b></td></tr>
+                  <tr><td nowrap=""><b><a href="/support.htm">Support</a></b></td></tr>
+                  <tr><td><hr></td></tr>
+                  <tr><td><b><a href="/manual.html">Manual</a></b></td></tr>
+                  <tr><td><b><a href="/FAQ.html">FAQ</a></b></td></tr>
+                  <tr><td><b><a href="/product-info.html">Product Information</a></b></td></tr>
+                  <tr><td><b><a href="http://www.digital-loggers.com/1P.html">Digital Loggers, Inc.</a></b></td></tr>
+                </table>
+            </td></tr>
+            <tr><td height="100%" valign="bottom" bgcolor="#f4f4f4"><small>Version 2.0.0 (Dec 2016)</small></td></tr>
+          </table>
+        </td>
+        <td>
+
+          <form id="wifi-settings" action="/set-configuration" method="post">
+            <table class="control-table">
+              <thead><th class="control-table-title" align="left" colspan="3">Wi-Fi settings</th></thead>
+              <thead>
+                <th class="control-table-header" width="3%">#</th>
+                <th class="control-table-header" width="20%" align="left">Item</th>
+                <th class="control-table-header" align="left">Value</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="center">1</td>
+                  <td align="left">SSID</td>
+                  <td><input class="textbox" id="wifi-ssid" name="wifi-ssid" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">2</td>
+                  <td align="left">Password</td>
+                  <td><input class="textbox" type="password" id="wifi-password" name="wifi-password" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">3</td>
+                  <td align="left">Mode</td>
+                  <td>
+                    <input type="radio" id="wifi-mode-sta" value="wifi-mode-sta" name="wifi-mode" maxlength="30"> Station
+                    <input type="radio" id="wifi-mode-ap" value="wifi-mode-ap" name="wifi-mode" maxlength="30"> Access point
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <input type="submit" value="Save & reboot" id="wifi-submit">
+          </form><br>
+
+          <form id="datetime-settings" action="/set-configuration" method="post">
+            <table class="control-table">
+              <thead><th class="control-table-title" align="left" colspan="3">Date/time settings</th></thead>
+              <thead>
+                <th class="control-table-header" width="3%">#</th>
+                <th class="control-table-header" width="20%" align="left">Item</th>
+                <th class="control-table-header" align="left">Value</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="center">1</td>
+                  <td>Date</td>
+                  <td>
+                    <input name="datetime-month" id="datetime-month" size="2"> / 
+                    <input name="datetime-day" id="datetime-day" size="2"> / 
+                    <input name="datetime-year" id="datetime-year" size="4"> 
+                    (MM / DD / YYYY)
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center">2</td>
+                  <td>Time</td>
+                  <td>
+                    <input name="datetime-hour" id="datetime-hour" size="2"> : 
+                    <input name="datetime-minute" id="datetime-minute" size="2"> 
+                    (HH : MM)
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <input type="submit" value="Save" id="datetime-submit">
+            <input value="Sync with Computer Clock" type="button" id="datetime-sync-with-clock">
+          </form><br>
+
+          <form action="/set-configuration" method="post">
+            <table class="control-table">
+              <thead><th class="control-table-title" align="left" colspan="4">Relay names</th></thead>
+              <thead>
+                <th class="control-table-header" width="3%">#</th>
+                <th class="control-table-header" width="20%" align="left">Item</th>
+                <th class="control-table-header" width="36%" align="left">Name</th>
+                <th class="control-table-header" align="left">Echo Name</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="center">1</td>
+                  <td align="left">Relay #1 name</td>
+                  <td><input class="textbox" id="relay-name-1" name="relay-name-1" maxlength="30"></td>
+                  <td>
+                    <input type="checkbox" id="relay-echo-enabled-1" name="relay-echo-enabled-1">
+                    <input class="textbox" id="relay-echo-name-1" name="relay-echo-name-1" maxlength="30">
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center">2</td>
+                  <td align="left">Relay #2 name</td>
+                  <td><input class="textbox" id="relay-name-2" name="relay-name-2" maxlength="30"></td>
+                  <td>
+                    <input type="checkbox" id="relay-echo-enabled-2" name="relay-echo-enabled-2">
+                    <input class="textbox" id="relay-echo-name-2" name="relay-echo-name-2" maxlength="30">
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center">3</td>
+                  <td align="left">Relay #3 name</td>
+                  <td><input class="textbox" id="relay-name-3" name="relay-name-3" maxlength="30"></td>
+                  <td>
+                    <input type="checkbox" id="relay-echo-enabled-3" name="relay-echo-enabled-3">
+                    <input class="textbox" id="relay-echo-name-3" name="relay-echo-name-3" maxlength="30">
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center">4</td>
+                  <td align="left">Relay #4 name</td>
+                  <td><input class="textbox" id="relay-name-4" name="relay-name-4" maxlength="30"></td>
+                  <td>
+                    <input type="checkbox" id="relay-echo-enabled-4" name="relay-echo-enabled-4">
+                    <input class="textbox" id="relay-echo-name-4" name="relay-echo-name-4" maxlength="30">
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center">5</td>
+                  <td align="left">Relay #5 name</td>
+                  <td><input class="textbox" id="relay-name-5" name="relay-name-5" maxlength="30"></td>
+                  <td>
+                    <input type="checkbox" id="relay-echo-enabled-5" name="relay-echo-enabled-5">
+                    <input class="textbox" id="relay-echo-name-5" name="relay-echo-name-5" maxlength="30">
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center">6</td>
+                  <td align="left">Relay #6 name</td>
+                  <td><input class="textbox" id="relay-name-6" name="relay-name-6" maxlength="30"></td>
+                  <td>
+                    <input type="checkbox" id="relay-echo-enabled-6" name="relay-echo-enabled-6">
+                    <input class="textbox" id="relay-echo-name-6" name="relay-echo-name-6" maxlength="30">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <input type="submit" value="Save">
+          </form><br>
+
+          <form action="/set-configuration" method="post">
+            <table class="control-table">
+              <thead><th class="control-table-title" align="left" colspan="3">Digital outputs names</th></thead>
+              <thead>
+                <th class="control-table-header" width="3%">#</th>
+                <th class="control-table-header" width="20%" align="left">Item</th>
+                <th class="control-table-header" align="left">Name</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="center">1</td>
+                  <td align="left">Output #1 name</td>
+                  <td><input class="textbox" id="dout-name-1" name="dout-name-1" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">2</td>
+                  <td align="left">Output #2 name</td>
+                  <td><input class="textbox" id="dout-name-2" name="dout-name-2" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">3</td>
+                  <td align="left">Output #3 name</td>
+                  <td><input class="textbox" id="dout-name-3" name="dout-name-3" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">4</td>
+                  <td align="left">Output #4 name</td>
+                  <td><input class="textbox" id="dout-name-4" name="dout-name-4" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">5</td>
+                  <td align="left">Output #5 name</td>
+                  <td><input class="textbox" id="dout-name-5" name="dout-name-5" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">6</td>
+                  <td align="left">Output #6 name</td>
+                  <td><input class="textbox" id="dout-name-6" name="dout-name-6" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">7</td>
+                  <td align="left">Output #7 name</td>
+                  <td><input class="textbox" id="dout-name-7" name="dout-name-7" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">8</td>
+                  <td align="left">Output #8 name</td>
+                  <td><input class="textbox" id="dout-name-8" name="dout-name-8" maxlength="30"></td>
+                </tr>
+              </tbody>
+            </table>
+            <input type="submit" value="Save">
+          </form><br>
+
+          <form action="/set-configuration" method="post">
+            <table class="control-table">
+              <thead><th class="control-table-title" align="left" colspan="3">Digital inputs names</th></thead>
+              <thead>
+                <th class="control-table-header" width="3%">#</th>
+                <th class="control-table-header" width="20%" align="left">Item</th>
+                <th class="control-table-header" align="left">Name</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="center">1</td>
+                  <td align="left">Input #1 name</td>
+                  <td><input class="textbox" id="din-name-1" name="din-name-1" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">2</td>
+                  <td align="left">Input #2 name</td>
+                  <td><input class="textbox" id="din-name-2" name="din-name-2" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">3</td>
+                  <td align="left">Input #3 name</td>
+                  <td><input class="textbox" id="din-name-3" name="din-name-3" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">4</td>
+                  <td align="left">Input #4 name</td>
+                  <td><input class="textbox" id="din-name-4" name="din-name-4" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">5</td>
+                  <td align="left">Input #5 name</td>
+                  <td><input class="textbox" id="din-name-5" name="din-name-5" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">6</td>
+                  <td align="left">Input #6 name</td>
+                  <td><input class="textbox" id="din-name-6" name="din-name-6" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">7</td>
+                  <td align="left">Input #7 name</td>
+                  <td><input class="textbox" id="din-name-7" name="din-name-7" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">8</td>
+                  <td align="left">Input #8 name</td>
+                  <td><input class="textbox" id="din-name-8" name="din-name-8" maxlength="30"></td>
+                </tr>
+              </tbody>
+            </table>
+            <input type="submit" value="Save">
+          </form><br>
+
+          <form action="/set-configuration" method="post">
+            <table class="control-table">
+              <thead><th class="control-table-title" align="left" colspan="3">Analog inputs names</th></thead>
+              <thead>
+                <th class="control-table-header" width="3%">#</th>
+                <th class="control-table-header" width="20%" align="left">Item</th>
+                <th class="control-table-header" align="left">Name</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="center">1</td>
+                  <td>Analog #1 name:</td>
+                  <td><input class="textbox" id="ain-name-1" name="ain-name-1" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">2</td>
+                  <td>Analog #2 name:</td>
+                  <td><input class="textbox" id="ain-name-2" name="ain-name-2" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">3</td>
+                  <td>Analog #3 name:</td>
+                  <td><input class="textbox" id="ain-name-3" name="ain-name-3" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">4</td>
+                  <td>Analog #4 name:</td>
+                  <td><input class="textbox" id="ain-name-4" name="ain-name-4" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">5</td>
+                  <td>Analog #5 name:</td>
+                  <td><input class="textbox" id="ain-name-5" name="ain-name-5" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">6</td>
+                  <td>Analog #6 name:</td>
+                  <td><input class="textbox" id="ain-name-6" name="ain-name-6" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">7</td>
+                  <td>Analog #7 name:</td>
+                  <td><input class="textbox" id="ain-name-7" name="ain-name-7" maxlength="30"></td>
+                </tr>
+                <tr>
+                  <td align="center">8</td>
+                  <td>Analog #8 name:</td>
+                  <td><input class="textbox" id="ain-name-8" name="ain-name-8" maxlength="30"></td>
+                </tr>
+              </tbody>
+            </table>
+            <input type="submit" value="Save">
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</BODY>
+</HTML>
